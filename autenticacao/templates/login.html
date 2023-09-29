@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block title %} Login {% endblock %}
+
+{% block main %}
+
+<div class="form-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-1 rounded-lg mt-4">
+                    <div class="card-header justify-content-center mycardheader">
+                        <h2 class="font-weight-dark text-center">Login</h2>
+                    </div>
+                    <div class="card-body mybody">
+
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+
+                                {% if form.errors %}
+                                    {% for error in form.non_field_errors %}
+                                        <p class="alert alert-danger" role="alert">{{ error }}</p>
+                                    {% endfor %}
+                                {% endif %}
+
+                            <div class="form-label-group">
+                                <label for="usuario">Usuário</label>
+                                <input type="text" class="form-control" name="username" id="usuario" placeholder="Usuário", spellcheck="true" 
+                                value="{{ form.data.username }}" autofocus required>
+                            </div>
+                            <br>
+
+                            <div class="form-label-group">
+                                <label for="senha">Senha</label>
+                                <input type="password" class="form-control" name="password" id="senha" placeholder="Senha" 
+                                value="{{ form.data.password }}" required>
+
+                                <span class="fa fa-lock" id="mostrar"></span>
+                                
+                            </div>
+                            <br>
+                            <button type="submit" class="btn1">Entrar</button>
+
+                        </form>
+                        <br>
+                        Não tem cadastro? <a href="{% url 'registrar' %}">Clique aqui</a> para se cadastrar.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var senhaInput = document.getElementById("senha");
+    var mostrarSenhaIcon = document.getElementById("mostrar");
+
+    mostrarSenhaIcon.addEventListener("click", function () {
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                mostrarSenhaIcon.classList.remove("fa-lock");
+                mostrarSenhaIcon.classList.add("fa-unlock-alt");
+            } else {
+                senhaInput.type = "password";
+                mostrarSenhaIcon.classList.remove("fa-unlock-alt");
+                mostrarSenhaIcon.classList.add("fa-lock");
+            }
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block title %} Novo Usuário {% endblock %}
+
+{% block main %}
+
+<div class="form-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-1 rounded-lg mt-4">
+                    <div class="card-header justify-content-center mycardheader">
+                        <h2 class="font-weight-dark text-center">Novo Usuário</h2>
+                    </div>
+                    <div class="card-body mybody">
+
+                        <form method="post" action="{% url 'registrar' %}">
+                            {% csrf_token %}
+
+                            {{ form.username.label }}
+                            {{ form.username }}
+                            {% if form.username.errors %}
+                                {% for error in form.username.errors %}
+                                    <p class='mytext'>{{ error }}</p>
+                                {% endfor %}
+                            {% endif %}
+                            {{ form.username.help_text }}
+                            <br><br>
+
+                            {{ form.email.label }}
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                    <p class='mytext'>{{ error }}</p>
+                                {% endfor %}
+                            {% endif %}
+                            {{ form.email.help_text }}
+                            <br><br>
+
+                            {{ form.password1.label }}
+                            {{ form.password1 }}
+                            <br>
+                            <li>Sua senha não pode ser muito parecida com o nome do usuário ou email.</li>
+                            <li>Sua senha precisa conter pelo menos 8 caracteres.</li>
+                            <li>Sua senha não pode ser uma senha comumente utilizada. Ex: aaa, bbb, 1234..., etc.</li>
+                            <li>Sua senha não pode ser inteiramente numérica, use letras juntamente de números ou 
+                            caracteres especiais como @/./+/-/_</li>
+                            <br>
+
+                            {{ form.password2.label }}
+                            {{ form.password2 }}
+                            {{ form.password2.help_text }}
+                            <br><br>
+
+                            {% if form.password2.errors %}
+                                  {% for error in form.password2.errors %}
+                                      <p class='mytext'>{{ error }}</p>
+                                  {% endfor %}
+                            {% endif %}
+
+                            <span class="fa fa-lock" id="mostrar1"></span>
+                            <span class="fa fa-lock" id="mostrar2"></span>
+
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                            <a href="{% url 'login' %}" class="btn btn-primary" style="position: absolute; right: 1rem;">Voltar</a>
+
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var senhaInput = document.getElementById("senha1");
+        var mostrarSenhaIcon = document.getElementById("mostrar1");
+    
+        mostrarSenhaIcon.addEventListener("click", function () {
+                if (senhaInput.type === "password") {
+                    senhaInput.type = "text";
+                    mostrarSenhaIcon.classList.remove("fa-lock");
+                    mostrarSenhaIcon.classList.add("fa-unlock-alt");
+                } else {
+                    senhaInput.type = "password";
+                    mostrarSenhaIcon.classList.remove("fa-unlock-alt");
+                    mostrarSenhaIcon.classList.add("fa-lock");
+                }
+            });
+        });
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var senhaInput = document.getElementById("senha2");
+        var mostrarSenhaIcon = document.getElementById("mostrar2");
+    
+        mostrarSenhaIcon.addEventListener("click", function () {
+                if (senhaInput.type === "password") {
+                    senhaInput.type = "text";
+                    mostrarSenhaIcon.classList.remove("fa-lock");
+                    mostrarSenhaIcon.classList.add("fa-unlock-alt");
+                } else {
+                    senhaInput.type = "password";
+                    mostrarSenhaIcon.classList.remove("fa-unlock-alt");
+                    mostrarSenhaIcon.classList.add("fa-lock");
+                }
+            });
+        });
+    </script>
+
+{% endblock %}
