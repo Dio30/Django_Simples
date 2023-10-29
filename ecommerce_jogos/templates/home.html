@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block title %} Home {% endblock %}
+
+{% block main %}
+
+{% include 'mensagens.html' %}
+
+<h1>Bem vindo</h1>
+    <li><a href="{% url 'logout' %}" onclick="return confirm('Tem certeza que deseja sair {{ user.username|capfirst }}?')">Logout</a></li>
+    <br>
+    <li><a href="{% url 'carrinho' %}">Carrinho</a></li>
+
+<div class="row">
+    {% for jogo in jogos %}
+    <div class="col-lg-4">
+        <img src="{{ jogo.image_url|default_if_none:'/static/img/2+placeholder.png' }}" class="thumbnail">
+
+        <div class="box-element product">
+            <h6><strong>{{ jogo.nome_jogo }}</strong></h6>
+            <hr>
+    
+            <button data-product="{{ jogo.id }}" data-action="add" class="btn btn-outline-secondary update-cart">
+                Add ao carrinho</button>
+            
+            <h4 class="h4" style="float: right"><strong>R$ {{ jogo.preco }}</strong></h4>
+            
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+
+{% endblock %}

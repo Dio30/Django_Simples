@@ -19,49 +19,56 @@
                         <form method="post" action="{% url 'registrar' %}">
                             {% csrf_token %}
 
-                            {{ form.username.label }}
-                            {{ form.username }}
-                            {% if form.username.errors %}
-                                {% for error in form.username.errors %}
-                                    <p class='mytext'>{{ error }}</p>
-                                {% endfor %}
-                            {% endif %}
-                            {{ form.username.help_text }}
-                            <br><br>
+                            <div class="form-label-group">
+                                {{ form.username.label }}
+                                <input type="text" class="form-control" name="username" placeholder="Usuário", spellcheck="false" 
+                                value="{{ form.data.username }}" autofocus required>
+                                
+                                {% if form.username.errors %}
+                                    {% for error in form.username.errors %}
+                                        <p class='mytext'>{{ error }}</p>
+                                    {% endfor %}
+                                {% endif %}
+                                
+                                {{ form.username.help_text }}
+                            </div>
 
-                            {{ form.email.label }}
-                            {{ form.email }}
-                            {% if form.email.errors %}
-                                {% for error in form.email.errors %}
-                                    <p class='mytext'>{{ error }}</p>
-                                {% endfor %}
-                            {% endif %}
-                            {{ form.email.help_text }}
-                            <br><br>
+                            <div class="form-label-group">
+                                {{ form.email.label }}
+                                <input type="email" class="form-control" name="email" placeholder="Email", value="{{ form.data.email }}" 
+                                required>
 
-                            {{ form.password1.label }}
-                            {{ form.password1 }}
-                            <br>
-                            <li>Sua senha não pode ser muito parecida com o nome do usuário ou email.</li>
-                            <li>Sua senha precisa conter pelo menos 8 caracteres.</li>
-                            <li>Sua senha não pode ser uma senha comumente utilizada. Ex: aaa, bbb, 1234..., etc.</li>
-                            <li>Sua senha não pode ser inteiramente numérica, use letras juntamente de números ou 
-                            caracteres especiais como @/./+/-/_</li>
-                            <br>
+                                {% if form.email.errors %}
+                                    {% for error in form.email.errors %}
+                                        <p class='mytext'>{{ error }}</p>
+                                    {% endfor %}
+                                {% endif %}
+                                {{ form.email.help_text }}
+                                <br>
+                            </div>
 
-                            {{ form.password2.label }}
-                            {{ form.password2 }}
-                            {{ form.password2.help_text }}
-                            <br><br>
-
+                            <div class="form-label-group">
+                                {{ form.password1.label }}
+                                <input type="password" class="form-control" name="password1" id="senha1" placeholder="Senha" value="{{ form.data.password1 }}" 
+                                required><br>
+                                {{ form.password1.help_text }}
+                                
+                                <span class="fa fa-lock" id="mostrar1"></span>
+                            </div>
+                            
+                            <div class="form-label-group">
+                                {{ form.password2.label }}
+                                <input type="password" class="form-control" name="password2" id="senha2" placeholder="Confirmar Senha" value="{{ form.data.password2 }}" 
+                                required>
+                                {{ form.password2.help_text }}
+                                <span class="fa fa-lock" id="mostrar2"></span>
+                                <br>
+                            </div>
                             {% if form.password2.errors %}
-                                  {% for error in form.password2.errors %}
-                                      <p class='mytext'>{{ error }}</p>
-                                  {% endfor %}
+                                {% for error in form.password2.errors %}
+                                    <p class='mytext'>{{ error }}</p>
+                                {% endfor %}
                             {% endif %}
-
-                            <span class="fa fa-lock" id="mostrar1"></span>
-                            <span class="fa fa-lock" id="mostrar2"></span>
 
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                             <a href="{% url 'login' %}" class="btn btn-primary" style="position: absolute; right: 1rem;">Voltar</a>
@@ -74,43 +81,5 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var senhaInput = document.getElementById("senha1");
-        var mostrarSenhaIcon = document.getElementById("mostrar1");
-    
-        mostrarSenhaIcon.addEventListener("click", function () {
-                if (senhaInput.type === "password") {
-                    senhaInput.type = "text";
-                    mostrarSenhaIcon.classList.remove("fa-lock");
-                    mostrarSenhaIcon.classList.add("fa-unlock-alt");
-                } else {
-                    senhaInput.type = "password";
-                    mostrarSenhaIcon.classList.remove("fa-unlock-alt");
-                    mostrarSenhaIcon.classList.add("fa-lock");
-                }
-            });
-        });
-    </script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var senhaInput = document.getElementById("senha2");
-        var mostrarSenhaIcon = document.getElementById("mostrar2");
-    
-        mostrarSenhaIcon.addEventListener("click", function () {
-                if (senhaInput.type === "password") {
-                    senhaInput.type = "text";
-                    mostrarSenhaIcon.classList.remove("fa-lock");
-                    mostrarSenhaIcon.classList.add("fa-unlock-alt");
-                } else {
-                    senhaInput.type = "password";
-                    mostrarSenhaIcon.classList.remove("fa-unlock-alt");
-                    mostrarSenhaIcon.classList.add("fa-lock");
-                }
-            });
-        });
-    </script>
 
 {% endblock %}

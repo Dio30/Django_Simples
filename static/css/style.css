@@ -1,0 +1,128 @@
+body{
+    background-color: #00ffff;
+}
+
+.btn1{
+  color: #000;
+  background-color: #00ffff;
+  margin: 0 auto;
+  display: block;
+  border: double 0.3rem #000;
+  font-size: 110%;
+}
+
+.btn1:hover{
+    background-color: #01bbd3;
+    transition: 1s;
+    border-radius: 1rem;
+    border: double 0.3rem #000;
+}
+
+.mycardheader{
+    background-color: #b0b0b0;
+}
+
+.mybody{
+    background-color: #8d8d8d;
+}
+
+#mostrar{
+    font-size: 130%;
+    position: absolute;
+    right: 1rem;
+    top: 2.5rem;
+}
+
+#mostrar1{
+    font-size: 130%;
+    position: absolute;
+    right: 1rem;
+    bottom: 11rem;
+}
+
+#mostrar2{
+    font-size: 130%;
+    position: absolute;
+    right: 1rem;
+    bottom: 3.5rem;
+}
+
+.mytext{
+    color: #d60b0b;
+}
+
+.form-label-group{ /* suporte para o login dinamico */
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #e6e6e6;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.box-element1{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #b3b2b2;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.product{
+	border-radius: 0 0 4px 4px;
+}
+
+.thumbnail{
+	width: 100%;
+	height: 200px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+
+.col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{
+	margin-top: 10px;
+}
+
+h1,h2,h3,h4,h5,h6{
+    color:hsl(0, 0%, 23%);
+    text-align: center;
+}
+
+.h4{
+    font-size: 120%;
+}
+
+.quantity{
+	display: inline-block;
+	font-weight: 700;
+	padding-right:10px;
+}
+
+.chg-quantity{
+	width: 12px;
+	cursor: pointer;
+	display: block;
+	margin-top: 5px;
+	transition:.1s;
+}
+
+.chg-quantity:hover{
+	opacity: .6;
+}
+
+.row-image{
+	width: 100px;
+}
+
+.cart-row{
+    display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #262626;
+    font-size: 72%;
+    font-weight: bolder;
+}

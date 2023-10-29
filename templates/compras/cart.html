@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Carrinho {% endblock %}
+
+{% block main %}
+
+{% include 'mensagens.html' %}
+
+<h5>Carrinho</h5>
+<br>
+<li><a href="{% url 'home' %}">Home</a></li>
+<br>
+<table class="table table-bordered">
+    <div class="box-element1">
+        <div class="cart-row">
+            <div style="flex:2"><strong>Imagem</strong></div>
+            <div style="flex:1"><strong>Jogo</strong></div>
+            <div style="flex:2"><strong>Preço</strong></div>
+            <div style="flex:1"><strong>Quant.</strong></div>
+            <div style="flex:1"><strong>Total</strong></div>
+        </div>
+
+    {% for item in itens %}
+
+    <div class="cart-row">
+        <div style="flex:2"><img class="row-image" src="{{ item.jogo.image_url|default_if_none:'/static/img/2+placeholder.png' }}"></div>
+        <div style="flex:1"><p>{{ item.jogo.nome_jogo }}</p></div>
+        <div style="flex:2"><p>R$ {{ item.jogo.preco|floatformat:2 }}</p></div>
+        <div style="flex:1">
+            <p class="quantity">{{ item.quantidade }}</p>
+            <div class="quantity">
+                <img data-product="{{ item.jogo.id }}" data-action="add" class="chg-quantity update-cart" src="/static/img/3+arrow-up.png">
+        
+                <img data-product="{{ item.jogo.id }}" data-action="remove" class="chg-quantity update-cart" src="/static/img/2+arrow-down.png">
+            </div>
+        </div>
+        <div style="flex:1">R$ {{ item.pegar_total|floatformat:2 }}</div>
+    </div>
+
+    {% endfor %}
+
+    <h5 class="h4">Total: <b>R$ {{ pedido.pegar_carrinho_total|floatformat:2 }}</b></h5>
+</table>
+
+{% endblock %}

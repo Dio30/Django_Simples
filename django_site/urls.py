@@ -19,9 +19,11 @@ from django.urls import path, include
 from autenticacao import url as autenticao_url
 from django.conf.urls.static import static
 from django.conf import settings
+from ecommerce_jogos import urls as ecommerce_jogos_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(autenticao_url)),
+    path('jogos/', include(ecommerce_jogos_urls)),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

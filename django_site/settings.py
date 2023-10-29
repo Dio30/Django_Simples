@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     
     #meus apps
     'autenticacao',
+    'ecommerce_jogos',
 ]
 
 MIDDLEWARE = [
@@ -133,16 +134,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_DIRS = [os.path.join (BASE_DIR, "/static")]
+STATICFILES_DIRS = [os.path.join (BASE_DIR, "static/")]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
 
-SESSION_COOKIE_AGE = 3600
+#SESSION_COOKIE_AGE = 3600
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Default primary key field type
